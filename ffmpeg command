@@ -1,0 +1,5 @@
+FILE CODEC AV1 TO HEVC VAAPI
+
+Works for IGPU AMD; max 4K
+
+ffmpeg -hwaccel vaapi -hwaccel_output_format vaapi -hwaccel_device /dev/dri/renderD128 -i input.mp4 -vf 'format=nv12,hwupload=derive_device=vaapi,scale_vaapi=w=4096:h=-16' -c:v hevc_vaapi -rc_mode CQP -qp 26 -c:a copy -strict unofficial output.mkv
